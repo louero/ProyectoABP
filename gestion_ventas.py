@@ -1,7 +1,7 @@
 #cambiar gestion clientes por ventas
 
 
-from conexion_base_datos import conectar
+from conexionDB import conectar
 
 def menu_clientes():
     while True:

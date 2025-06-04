@@ -1,4 +1,4 @@
-from conexion_base_datos import conectar
+from conexionDB import conectar
 
 def menu_clientes():
     while True:
@@ -18,19 +18,37 @@ def menu_clientes():
             print("Opción no válida")
 
 def ver_clientes():
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM clientes")
-    for cliente in cursor.fetchall():
-        print(cliente)
-    conn.close()
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM clientes")
+        clientes = cursor.fetchall()
+        
+        if not clientes:
+            print("No hay clientes cargados")
+        else:
+            for cliente in clientes:
+                print(f"ID: {cliente[0]}")
+                print(f"CUIT: {cliente[1]}")
+                print(f"Razón Social: {cliente[2]}")
+                print(f"Email: {cliente[3]}")
+        conn.close()
+    except Exception as e:
+        print("error al consultar los clientes:", )
 
 def agregar_cliente():
-    nombre = input("Nombre del cliente: ")
-    cuit = input("CUIT del cliente: ")
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO clientes (nombre, cuit) VALUES (%s, %s)", (nombre, cuit))
-    conn.commit()
-    conn.close()
-    print("Cliente agregado correctamente.")
+    try:
+        cuit = input("CUIT del cliente: ")
+        razon_social = input("Ingrese Razon social:")
+        email = input("Ingrese email:")
+    
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO clientes (cuit, razon_social, email) VALUES (%s, %s, %s)", (cuit,razon_social, email ))
+        conn.commit()
+        conn.close()
+    
+        print("Cliente agregado correctamente.")
+    
+    except Exception as e:
+        print("error al cargar el cliente")
