@@ -1,4 +1,4 @@
-#cambiar gestion clientes por ventas
+#Apartado para geston de ventas
 
 
 from conexionDB import conectar

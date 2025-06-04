@@ -1,3 +1,6 @@
+#Apartado para geston de clientes
+
+
 from conexionDB import conectar
 
 def menu_clientes():

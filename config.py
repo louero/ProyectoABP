@@ -1,7 +1,7 @@
 # config.py
 host = 'localhost'
 user = 'root'
-password = ''  # tu contraseña si tiene
+password = ''  # aca va la contraseña
 database = 'skyrouteDB'
 
 

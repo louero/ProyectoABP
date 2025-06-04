@@ -1,4 +1,4 @@
-
+#Apartado para geston de destinos
 
 
 from conexionDB import conectar
