@@ -6,7 +6,10 @@
 # Eroles Prado Cecilia Lourdes - Gómez Álvarez Julieta - 
 
 
+#CONTROLAR
 
+
+#para modularizar
 from gestion_clientes import menu_clientes
 from gestion_destinos import menu_destinos
 from gestion_ventas import menu_ventas, consultar_ventas, boton_arrepentimiento

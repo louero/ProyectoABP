@@ -8,7 +8,7 @@ def menu_ventas():
     while True:
         print("GESTIÓN DE VENTAS --")
         print("1. Registrar venta")
-        print("3. Volver al menú principal")
+        print("2. Volver al menú principal")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
@@ -49,6 +49,7 @@ def consultar_ventas(estado):
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM ventas WHERE estado_venta = %s", (estado,))
         ventas = cursor.fetchall()
+        
         if not ventas:
             print(f"No hay ventas con estado {estado}")
         else:
@@ -73,7 +74,7 @@ def boton_arrepentimiento():
             ahora = datetime.datetime.now()
             diferencia = ahora - fecha_venta
 
-            if diferencia.total_seconds() <= 300:
+            if diferencia.total_seconds() <= 300:  #5 MINUTOS HAY QUE VER ESTO
                 cursor.execute("""
                     UPDATE ventas
                     SET estado_venta = 'Anulada', fecha_anulacion = %s
@@ -82,7 +83,7 @@ def boton_arrepentimiento():
                 conn.commit()
                 print("Venta anulada con éxito.")
             else:
-                print("No se puede anular: pasaron más de 5 minutos.")
+                print("No se puede anular: pasaron más de 5 minutos.") #modificar el tiempo no me acuerdo cuanto era
         else:
             print("No se encontró una venta activa con ese ID.")
         

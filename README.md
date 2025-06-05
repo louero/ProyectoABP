@@ -8,3 +8,11 @@ Nombre del proyecto y descripción.
  Instrucciones para ejecutar el sistema.
 
  Lista completa de archivos y carpetas del repositorio.
+
+
+ NOTA GRUPAL: 
+ 
+ -FALTA HACER LO DE CONSULTAS(input)
+ -Etica 
+ -revisar readme y agregar lo que piden
+ -Probar que todo funcione

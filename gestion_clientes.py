@@ -1,5 +1,5 @@
 #Apartado para geston de clientes
-
+#CONTROLAR
 
 from conexionDB import conectar
 

@@ -1,5 +1,5 @@
 #Apartado para geston de destinos
-
+#CONTROLAR 
 
 from conexionDB import conectar
 
