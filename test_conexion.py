@@ -1,4 +1,4 @@
-# test_conexion.py
+# controlar conexion
 from conexionDB import conectar
 
 try:

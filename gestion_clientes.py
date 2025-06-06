@@ -1,5 +1,5 @@
 #Apartado para geston de clientes
-#CONTROLAR
+#Creo que ya estaria agregado lo de buscar cliente... 
 
 from conexionDB import conectar
 
@@ -8,7 +8,9 @@ def menu_clientes():
         print("\n-- GESTIÓN DE CLIENTES --")
         print("1. Ver clientes")
         print("2. Agregar cliente")
-        print("3. Volver al menú principal")
+        print("3. Buscar cliente")
+        print("4. Volver al menú principal")
+        
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
@@ -16,6 +18,8 @@ def menu_clientes():
         elif opcion == "2":
             agregar_cliente()
         elif opcion == "3":
+            buscar_cliente_por_cuit()
+        elif opcion == "4":
             break
         else:
             print("Opción no válida")
@@ -55,3 +59,18 @@ def agregar_cliente():
     
     except Exception as e:
         print("error al cargar el cliente")
+
+def buscar_cliente_por_cuit():
+    try:
+        cuit = input("Ingrese el cuit del cliente: ")
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM clientes WHERE cuit = %s", (cuit,))
+        cliente = cursor.fetchone()
+        if cliente:
+            print(f"ID: {cliente[0]} | CUIT: {cliente[1]} | Razón Social: {cliente[2]} | Email: {cliente[3]}")
+        else:
+            print("Cliente no encontrado.")
+        conn.close()
+    except Exception as e:
+        print("Error al buscar cliente:", e)

@@ -1,5 +1,5 @@
 #Apartado para geston de ventas
-
+#CONTROLAR Y agregar un buscar_venta_por_id o buscar_venta_estado (ver ejemplo de gestion_clientes: buscar_cliente_por_cuit)
 
 from conexionDB import conectar
 import datetime

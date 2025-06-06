@@ -1,7 +1,7 @@
 # config.py
 host = 'localhost'
 user = 'root'
-password = '465415lu*'  # aca va la contraseña
+password = '465415lu*'  # Cambiar por la contraseña de mySQL de ser necesario
 database = 'skyrouteDB'
 
 

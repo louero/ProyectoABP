@@ -1,5 +1,5 @@
 #Apartado para geston de destinos
-#CONTROLAR 
+#CONTROLAR y agregar un buscar_destino_por_ciudad (ver ejemplo de gestion_clientes: buscar_cliente_por_cuit)
 
 from conexionDB import conectar
 

@@ -1,11 +1,16 @@
+#conexionDB.py - mySQL con python
+#se instalo con pip install mysql-connector-python desde "terminal"
+
+
 import mysql.connector
+from config import host, user, password, database #importa datos desde config.py (no necesito llenar campos)
 
 def conectar():
     conexion = mysql.connector.connect(
-        host="localhost",
-        user="root",         #
-        password="465415lu*",  # La contraseña de mySQL
-        database="skyrouteDB"
+        host=host,
+        user=user,         
+        password=password,  
+        database=database
     )
     return conexion
 
