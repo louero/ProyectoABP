@@ -1,5 +1,5 @@
-#Apartado para geston de destinos
-#CONTROLAR y agregar un buscar_destino_por_ciudad (ver ejemplo de gestion_clientes: buscar_cliente_por_cuit)
+#Apartado para gestion_destinos.py Modulo para gestionar destinos en la base de datos SkyRoute.
+
 
 from conexionDB import conectar
 
@@ -8,9 +8,10 @@ def menu_destinos():
         print("GESTIÓN DE DESTINOS --")
         print("1. Ver destinos")
         print("2. Agregar destinos")
-        print("3. Modificar destino")
-        print("4. Eliminar destino")
-        print("5. Volver al menu principal")
+        print("3. Buscar destino por ciudad")
+        print("4. Modificar destino")
+        print("5. Eliminar destino")
+        print("6. Volver al menu principal")
         
         opcion = input("Seleccione una opción: ")
 
@@ -19,13 +20,18 @@ def menu_destinos():
         elif opcion == "2":
             agregar_destino()
         elif opcion == "3":
-            modificar_destino()
+            buscar_destino_por_ciudad()
         elif opcion == "4":
-            eliminar_destino()
+            modificar_destino()
         elif opcion == "5":
+            eliminar_destino()
+        elif opcion == "6":
             break
         else:
             print("Opción no válida")
+
+
+#ver todos los destinos 
 
 def ver_destinos():
     try:
@@ -33,11 +39,13 @@ def ver_destinos():
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM destinos")
         destinos = cursor.fetchall()
+        
         if not destinos:
             print("No hay destinos cargados.")
         else:
             for destino in destinos:
                 print(f"ID: {destino[0]}, Ciudad: {destino[1]}, País: {destino[2]}, Costo base: ${destino[3]}")
+        
         conn.close()
     except Exception as e:
         print("Error al consultar los destinos:", e)
@@ -59,6 +67,28 @@ def agregar_destino():
     except Exception as e:
         print("Error al agregar el destino:", e)
 
+# buscar destino por ciudad
+
+def buscar_destino_por_ciudad():
+    ciudad = input("Ingrese la ciudad: ")
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM destinos WHERE ciudad = %s", (ciudad,))
+        destino= cursor.fetchone()
+        
+        if destino:
+            print(f"ID: {destino[0]} | Ciudad: {destino[1]} | País: {destino[2]} | Costo: ${destino[3]:,.2f}")
+        else:
+            print("Destino no encontrado.")
+    
+        conn.close()
+    except Exception as e:
+        print("Error al buscar destino:", e)
+
+
+
+#modificar destino
 
 def modificar_destino():
     try:
@@ -81,6 +111,7 @@ def modificar_destino():
     except Exception as e:
         print("Error al modificar destino:", e)
 
+#eliminar destino
 
 def eliminar_destino():
     try:

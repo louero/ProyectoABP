@@ -10,7 +10,7 @@ def conectar():
         host=host,
         user=user,         
         password=password,  
-        database=database
+        database=database,
     )
     return conexion
 

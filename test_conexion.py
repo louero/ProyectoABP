@@ -1,4 +1,4 @@
-# controlar conexion
+# controlar conexion SQL-Python
 from conexionDB import conectar
 
 try:

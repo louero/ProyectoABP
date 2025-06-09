@@ -1,13 +1,6 @@
-#CONTROLAR
 
 #SkyRoute - sistema de Gestion de pasajes Aereos
 #Evidencia 3 modulo programador - PROYECTO ABP
-
-#Desarrollado por: GRUPO N19  Nombre de grupo: GRupo 9
-# Fiorio Fuenzalida Tadiana Alejandra -Tello Pablo Andrés
-# Eroles Prado Cecilia Lourdes - Gómez Álvarez Julieta - 
-
-
 
 
 
@@ -49,7 +42,9 @@ while True:
     elif opcion == "5":
         boton_arrepentimiento()
     elif opcion == "6":
-        print("ver reporte general (cargando...)")
+        print("Reporte general en construccion...)")
+    elif opcion =="7":
+        print("Sistema desarrollado por Grupo N19 GRUPO9-Cohorte 2025 ")
     elif opcion == "8":
         print("Gracias por usar Skyroute")
         break

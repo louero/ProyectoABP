@@ -1,7 +1,9 @@
-#Apartado para geston de clientes
-#Creo que ya estaria agregado lo de buscar cliente... 
+# gestion_clientes.py - Modulo para gestionar clientes en la base de datos SkyRoute.
+
 
 from conexionDB import conectar
+
+#Menu principal para la gestion de clientes.
 
 def menu_clientes():
     while True:
@@ -9,7 +11,9 @@ def menu_clientes():
         print("1. Ver clientes")
         print("2. Agregar cliente")
         print("3. Buscar cliente")
-        print("4. Volver al menú principal")
+        print("4. Modificar cliente")
+        print("5. eliminar cliente")
+        print("6. Volver al menú principal")
         
         opcion = input("Seleccione una opción: ")
 
@@ -20,9 +24,15 @@ def menu_clientes():
         elif opcion == "3":
             buscar_cliente_por_cuit()
         elif opcion == "4":
+            modificar_cliente()
+        elif opcion == "5":
+            eliminar_cliente()
+        elif opcion == "6":
             break
         else:
             print("Opción no válida")
+
+#Consultar todos los clientes almacenados en la base de datos
 
 def ver_clientes():
     try:
@@ -43,6 +53,8 @@ def ver_clientes():
     except Exception as e:
         print("error al consultar los clientes:", )
 
+#agregar clientes solicitando los datos por teclado
+
 def agregar_cliente():
     try:
         cuit = input("CUIT del cliente: ")
@@ -60,6 +72,8 @@ def agregar_cliente():
     except Exception as e:
         print("error al cargar el cliente")
 
+#buscar cientes por su numero de CUIT ingresandolo por teclado
+
 def buscar_cliente_por_cuit():
     try:
         cuit = input("Ingrese el cuit del cliente: ")
@@ -74,3 +88,39 @@ def buscar_cliente_por_cuit():
         conn.close()
     except Exception as e:
         print("Error al buscar cliente:", e)
+
+#Modificar clientes registrados segun su id_cliente
+        
+def modificar_cliente():
+    id_cliente = input("Ingrese ID del cliente a modificar: ")
+    nueva_razon = input("Nueva razón social: ")
+    nuevo_cuit = input("Nuevo CUIT: ")
+    nuevo_email = input("Nuevo email: ")
+    conn = conectar()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("UPDATE clientes SET razon_social=%s, cuit=%s, email=%s WHERE id_cliente=%s",
+                        (nueva_razon, nuevo_cuit, nuevo_email, id_cliente))
+        conn.commit()
+        print("Cliente modificado correctamente.")
+    except Exception as e:
+        print("Error al modificar cliente:", e)
+    finally:
+        cursor.close()
+        conn.close()
+
+#Eliminar clientes de la base de datos segun su id_cliente
+
+def eliminar_cliente():
+    id_cliente = input("Ingrese ID del cliente a eliminar: ")
+    conn = conectar()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DELETE FROM clientes WHERE id_cliente=%s", (id_cliente,))
+        conn.commit()
+        print("Cliente eliminado.")
+    except Exception as e:
+        print("Error al eliminar cliente:", e)
+    finally:
+        cursor.close()
+        conn.close()
